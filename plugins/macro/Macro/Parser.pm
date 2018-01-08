@@ -2,7 +2,7 @@
 package Macro::Parser;
 
 use strict;
-use encoding 'utf8';
+use utf8;
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -37,6 +37,7 @@ sub parseMacroFile {
 	my $macroCountOpenBlock = 0;
 	my ($macro_subs, @perl_lines);
 	open my $fp, "<:utf8", $file or return 0;
+	binmode($fp, ":utf8");
 	while (<$fp>) {
 		$. == 1 && s/^\x{FEFF}//; # utf bom
 		s/(.*)[\s\t]+#.*$/$1/;	# remove last comments

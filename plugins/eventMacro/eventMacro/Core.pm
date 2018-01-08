@@ -6,6 +6,8 @@ use Log qw(message error warning debug);
 use Utils;
 use AI;
 
+use utf8;
+
 use eventMacro::Core;
 use eventMacro::Data;
 use eventMacro::Lists;
@@ -1680,6 +1682,7 @@ sub include {
 		error "[eventMacro] Could not open eventMacro file for include operation.\n", "eventMacro";
 		return;
 	}
+	binmode(IN, ":utf8");
 	my @lines = <IN>;
 	close(IN);
 	
